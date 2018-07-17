@@ -1,0 +1,47 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+    dependencies {[
+        classpath ("org.springframework.boot:spring-boot-gradle-plugin:1.4.2.RELEASE")
+        ]
+     }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+jar {
+    baseName = 'gs-rest-service'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+//    This empty because all the dependencies are declared in greetingPlugin automagically
+
+    compile(group: 'org.springframework.boot', name: 'spring-boot-starter')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.projectlombok:lombok')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    // ADD New Relic custom parameters
+    compile group: 'com.newrelic.agent.java', name: 'newrelic-api', version: '3.26.1'
+    testCompile group: 'org.powermock', name: 'powermock-module-junit4', version: '1.6.5'
+    testCompile group: 'org.powermock', name: 'powermock-api-mockito', version: '1.6.5'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
