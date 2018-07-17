@@ -56,7 +56,7 @@ public class NewRelicAddCustomParameterWrapperTest {
         //GIVEN
         String key = "woopsie-doo1";
         String value = "tippyConue";
-
+        PowerMockito.mockStatic(NewRelic.class);
         PowerMockito.spy(NewRelic.class);
         ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
         ArgumentCaptor<String> captor2 = ArgumentCaptor.forClass(String.class);
